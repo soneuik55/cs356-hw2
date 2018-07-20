@@ -10,6 +10,7 @@ import java.awt.Component;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Set;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -38,8 +39,10 @@ public class AdminControlPanel extends javax.swing.JFrame {
     private DefaultTreeModel model = new DefaultTreeModel(root);
     private String user_Selected;
     private HashMap<String, UserView> map_userViews = new HashMap<String, UserView>();
-  
-//    private DefaultTreeModel model = new DefaultTreeModel(root);
+    private ArrayList<Long> list_time_user = new ArrayList();
+    private ArrayList<Long> list_time_group = new ArrayList();
+    Lastupdate lastTime;
+    
 
 
      public AdminControlPanel() {
@@ -48,7 +51,7 @@ public class AdminControlPanel extends javax.swing.JFrame {
         list_Unique_GroupId = new ArrayList();
         list_Number_User = new ArrayList();
         list_Number_Group = new ArrayList();
- 
+          lastTime = new Lastupdate() ;
         initComponents(); 
     }
 
@@ -86,7 +89,7 @@ public class AdminControlPanel extends javax.swing.JFrame {
         message_Total_Button = new javax.swing.JButton();
         positive_button = new javax.swing.JButton();
         id_Verification_Button = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        last_user_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -158,7 +161,12 @@ public class AdminControlPanel extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Find the last updated user");
+        last_user_button.setText("Find the last updated user");
+        last_user_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                last_user_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -180,7 +188,7 @@ public class AdminControlPanel extends javax.swing.JFrame {
                                     .addComponent(user_Add_Button)
                                     .addComponent(Group_Add_Button)))
                             .addComponent(UserView_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(38, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,8 +200,8 @@ public class AdminControlPanel extends javax.swing.JFrame {
                                     .addComponent(positive_button, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(User_Total_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(id_Verification_Button)
-                            .addComponent(jButton2))
-                        .addGap(76, 76, 76))))
+                            .addComponent(last_user_button))
+                        .addGap(116, 116, 116))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,7 +230,7 @@ public class AdminControlPanel extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(id_Verification_Button)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(last_user_button)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -327,6 +335,8 @@ public class AdminControlPanel extends javax.swing.JFrame {
                         list_Number_Group.add(group);
                         list_Unique_GroupId.add(GroupTextArea.getText());
                         selectedNode.add(groupNode);
+                   
+                        JOptionPane.showMessageDialog(null, "It takes " + group.get_time()+ " miliseconds to create this group", "time for group", JOptionPane.INFORMATION_MESSAGE);   
                     }
                 }
             } else {
@@ -339,6 +349,7 @@ public class AdminControlPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_Group_Add_ButtonActionPerformed
 
     private void UserView_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserView_ButtonActionPerformed
+        ;
         if (jTree1.getSelectionPath() == null) {
             JOptionPane.showMessageDialog(null, "Select a user.", "Error", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -347,13 +358,16 @@ public class AdminControlPanel extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Select a user, but not a group.", "Error", JOptionPane.INFORMATION_MESSAGE);
             } else if (selectedNode.getUserObject() instanceof User) {
                 user_Selected = selectedNode.getUserObject().toString();    // convert user to string in order to use as a key in hash map. 
-                User user = new User(user_Selected);
+                User user =  new User(user_Selected);
                 UserView userView = map_userViews.get(user_Selected);   // find the user from the hash maps by using user_Selected as a key. 
                 System.out.println(user_Selected);
                 userView.setVisible(true);
+            
+                JOptionPane.showMessageDialog(null, "It takes " + user.get_time() + " miliseconds to create this user", "time for user", JOptionPane.INFORMATION_MESSAGE);
            
             }
         }
+        
     }//GEN-LAST:event_UserView_ButtonActionPerformed
 
     private void User_Total_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_User_Total_ButtonActionPerformed
@@ -456,6 +470,10 @@ public class AdminControlPanel extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "There is invalid user id that has the same with others, but spaces", "Error", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_id_Verification_ButtonActionPerformed
 
+    private void last_user_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_last_user_buttonActionPerformed
+         JOptionPane.showMessageDialog(null, "The user" +lastTime.get_userID() +  " posted the last post", "The last user posting", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_last_user_buttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -469,11 +487,11 @@ public class AdminControlPanel extends javax.swing.JFrame {
     private javax.swing.JButton UserView_Button;
     private javax.swing.JButton User_Total_Button;
     private javax.swing.JButton id_Verification_Button;
-    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTree jTree1;
+    private javax.swing.JButton last_user_button;
     private javax.swing.JButton message_Total_Button;
     private javax.swing.JButton positive_button;
     private javax.swing.JButton user_Add_Button;

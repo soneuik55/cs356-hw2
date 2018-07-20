@@ -28,12 +28,17 @@ public class UserView extends javax.swing.JFrame implements Observer {
 
     DefaultListModel<String> following = new DefaultListModel<String>();
     DefaultListModel<String> newsfeed= new DefaultListModel<String>();
+    DefaultListModel<String> postfeed= new DefaultListModel<String>();
+    
     private String user_ID;
     private User user;
     private ArrayList<User> list_users;
     private ArrayList<String> list_userID;
     private HashMap<String, UserView> userViews;
-   
+    private long last_posting ;
+    private final static String newline = "\n";
+    
+    private String last_poster_ID;
   public UserView(ArrayList<User> users, User us, ArrayList<String> IDs,  HashMap<String, UserView> uV) {
          
          list_users = users;
@@ -66,6 +71,7 @@ public class UserView extends javax.swing.JFrame implements Observer {
         Post_Tweet_TextArea = new javax.swing.JTextArea();
         jScrollPane5 = new javax.swing.JScrollPane();
         followTextArea = new javax.swing.JTextArea();
+        lastUpdate_time = new java.awt.TextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,42 +111,55 @@ public class UserView extends javax.swing.JFrame implements Observer {
         followTextArea.setRows(5);
         jScrollPane5.setViewportView(followTextArea);
 
+        lastUpdate_time.setText("last posting time");
+        lastUpdate_time.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lastUpdate_timeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(Post_Tweet_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                            .addComponent(Follow_User_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1)))
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Follow_User_Button)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(57, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Post_Tweet_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lastUpdate_time, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(Follow_User_Button, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Follow_User_Button)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(Post_Tweet_Button, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Post_Tweet_Button)
+                        .addGap(2, 2, 2)
+                        .addComponent(lastUpdate_time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -191,11 +210,16 @@ public class UserView extends javax.swing.JFrame implements Observer {
             int size = followers.size();
             String message = user.get_newsFeed().get(0);
             
+            last_posting = System.currentTimeMillis();
+            
+           
+          
             
             for (int j = 0; j < size; j++) {
                 User this_user = followers.get(j);
                 
                 UserView current_UserView = userViews.get(this_user.get_UniqueID());
+               
                 this_user.updateNewsFeed(message);
                 update(this_user, message);
 
@@ -203,13 +227,47 @@ public class UserView extends javax.swing.JFrame implements Observer {
                 current_UserView.NewFeed_List.setModel(newsfeed); 
                 
                 
+           
+                 Lastupdate lastTime = new Lastupdate(user_ID) ;
+             
+                 lastTime.get_lastTime_list().add(lastTime.get_lastTime());
+            
+                  long max= 0;
+                
+                
+                  for(int i=0; i< lastTime.get_lastTime_list().size(); i++){
+                
+                if( max < lastTime.get_lastTime_list().get(i))
+                        max = lastTime.get_lastTime_list().get(i);
+                
+            }
+                  
+                  System.out.println("The lastest time is: " + max);
+                String text =  String.valueOf(max); 
+                
+                 update(this_user, text);
+                 current_UserView.postfeed.insertElementAt(text, 0);
+                 
+                 lastUpdate_time.setColumns(1);
+                 current_UserView.lastUpdate_time.setText(text);
+                 lastUpdate_time.setText(text);
+                
+                
                 current_UserView.revalidate();
                 current_UserView.repaint();
+                 
+                
             }
+               
+            
             revalidate();
             repaint();
         }
     }//GEN-LAST:event_Post_Tweet_ButtonActionPerformed
+
+    private void lastUpdate_timeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastUpdate_timeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lastUpdate_timeActionPerformed
 
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -223,6 +281,7 @@ public class UserView extends javax.swing.JFrame implements Observer {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private java.awt.TextField lastUpdate_time;
     // End of variables declaration//GEN-END:variables
 
   @Override

@@ -5,10 +5,11 @@ package miniTwitter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.*;
+ 
 
  
 
-public class User extends Observable implements Observer  {
+public class User extends Observable implements Observer, Visitor  {
 	
 	private String uniqueID;
 	private List<String> list_following;
@@ -26,7 +27,9 @@ public class User extends Observable implements Observer  {
 	private String[] positiveWords = {"good", "great", "excellent" , "nice", "thank you", "Thank you" , "love", "best", "appreciate"};
         private int number_Users = 0;
         
-        
+        private long creationTime = 0; 
+        private long lastUpdateTime = 0;
+    
 	public User(String id) {
 		
         uniqueID = id; 
@@ -34,10 +37,10 @@ public class User extends Observable implements Observer  {
         list_following = new ArrayList();
 	list_follower = new ArrayList();
 	list_newsFeed = new ArrayList();
-        list_Msg = new ArrayList();
-     
-	
-		
+        list_Msg = new ArrayList(); 
+	creationTime =  System.currentTimeMillis();
+        
+  
 		
 	}
 	 
@@ -89,7 +92,7 @@ public class User extends Observable implements Observer  {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
+	 
 		
 	}
         @Override
@@ -120,4 +123,10 @@ public class User extends Observable implements Observer  {
 		list_newsFeed.add(msg);
 	}
 	 
+        
+ 
+      public long get_time() {
+              return creationTime;
+      }
+     
 }

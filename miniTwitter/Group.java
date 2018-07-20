@@ -7,13 +7,15 @@ import java.util.List;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 
-public class Group{
+public class Group implements Visitor {
 	
 	private String uniqueID;
 	private List<String> list_users = new ArrayList();
 	private int number_users_group = 0;
 	private static DefaultMutableTreeNode root;
-	 
+	private long creationTime;
+        private long lastUpdateTime ;
+    
         
         
 	 public Group() {
@@ -28,6 +30,7 @@ public class Group{
          if (!list_users.contains(ID))
          root = new DefaultMutableTreeNode(ID);
          number_users_group++;
+         creationTime =  System.currentTimeMillis();
     }
       
 	 public String get_UniqueID() {
@@ -51,5 +54,11 @@ public class Group{
          public String toString() {
          return uniqueID;
     }
+         
+         
+  
+      public long get_time() {
+              return creationTime;
+      }
 	
 }
