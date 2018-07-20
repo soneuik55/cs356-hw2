@@ -26,33 +26,43 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="185" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jScrollPane3" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane2" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="user_Add_Button" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Group_Add_Button" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="UserView_Button" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Group_Add_Button" min="-2" max="-2" attributes="0"/>
-                          <Component id="user_Add_Button" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <EmptySpace pref="38" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="UserView_Button" min="-2" pref="279" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="message_Total_Button" max="32767" attributes="0"/>
-                          <Component id="User_Total_Button" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="message_Total_Button" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="Group_Total_Button" max="32767" attributes="0"/>
+                                  <Component id="positive_button" min="-2" pref="99" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="User_Total_Button" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
+                          <Component id="id_Verification_Button" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton2" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="Group_Total_Button" max="32767" attributes="0"/>
-                          <Component id="positive_button" max="32767" attributes="0"/>
-                      </Group>
+                      <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="250" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,23 +71,20 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
                           <Component id="user_Add_Button" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" min="-2" pref="54" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane3" min="-2" pref="57" max="-2" attributes="0"/>
                           <Component id="Group_Add_Button" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="UserView_Button" pref="34" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="UserView_Button" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="User_Total_Button" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Group_Total_Button" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -87,9 +94,13 @@
                           <Component id="message_Total_Button" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="positive_button" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="75" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="id_Verification_Button" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -196,6 +207,19 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="positive_buttonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="id_Verification_Button">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="User/Group ID verification"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="id_Verification_ButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Find the last updated user"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

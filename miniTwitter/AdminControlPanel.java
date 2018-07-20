@@ -85,6 +85,8 @@ public class AdminControlPanel extends javax.swing.JFrame {
         Group_Total_Button = new javax.swing.JButton();
         message_Total_Button = new javax.swing.JButton();
         positive_button = new javax.swing.JButton();
+        id_Verification_Button = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -149,6 +151,15 @@ public class AdminControlPanel extends javax.swing.JFrame {
             }
         });
 
+        id_Verification_Button.setText("User/Group ID verification");
+        id_Verification_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                id_Verification_ButtonActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Find the last updated user");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,46 +167,51 @@ public class AdminControlPanel extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane3)
+                                    .addComponent(jScrollPane2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(user_Add_Button)
+                                    .addComponent(Group_Add_Button)))
+                            .addComponent(UserView_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(38, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Group_Add_Button)
-                            .addComponent(user_Add_Button)))
-                    .addComponent(UserView_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(message_Total_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(User_Total_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(2, 2, 2)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Group_Total_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(positive_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(250, Short.MAX_VALUE))
+                            .addComponent(message_Total_Button)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(117, 117, 117)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Group_Total_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(positive_button, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(User_Total_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(id_Verification_Button)
+                            .addComponent(jButton2))
+                        .addGap(76, 76, 76))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(user_Add_Button))
+                            .addComponent(user_Add_Button)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Group_Add_Button))
                         .addGap(18, 18, 18)
-                        .addComponent(UserView_Button, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                        .addGap(31, 31, 31)
+                        .addComponent(UserView_Button)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(User_Total_Button)
                             .addComponent(Group_Total_Button))
@@ -203,7 +219,11 @@ public class AdminControlPanel extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(message_Total_Button)
                             .addComponent(positive_button))
-                        .addContainerGap(75, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(id_Verification_Button)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -291,10 +311,10 @@ public class AdminControlPanel extends javax.swing.JFrame {
         } else {
             if (!list_Unique_GroupId.contains(GroupTextArea.getText())) {
                 if (jTree1.getSelectionPath() == null) {
-                    Group group = new Group(GroupTextArea.getText());
+                    Group group = new Group(GroupTextArea.getText()+ " group");
                     DefaultMutableTreeNode groupNode = new DefaultMutableTreeNode(group, true);
                     list_Number_Group.add(group);
-                    list_Unique_GroupId.add(GroupTextArea.getText());
+                    list_Unique_GroupId.add(GroupTextArea.getText() );
                     model = (DefaultTreeModel)jTree1.getModel();
                     root = (DefaultMutableTreeNode)model.getRoot();
                     root.add(groupNode);
@@ -361,6 +381,81 @@ public class AdminControlPanel extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_positive_buttonActionPerformed
 
+    private void id_Verification_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_Verification_ButtonActionPerformed
+        Boolean found_Invalid_GroupdId = false;
+        Boolean found_Invalid_UserId = false;
+        
+       int size_Groups = list_Unique_GroupId.size();
+       int size_users = list_Unique_UserId.size();
+       
+       //new group and user arrayList
+       ArrayList<String> newGroup_ID = new ArrayList();
+       ArrayList<String> newUser_ID = new ArrayList();
+       
+       
+       
+       String remover; 
+       
+       //remove all the spaces of group id first
+       for(int i=0; i< size_Groups; i++){
+           remover = list_Unique_GroupId.get(i).replaceAll("\\s+","");
+           System.out.println("after removing space: "+remover);
+            newGroup_ID.add(remover);
+           
+       }
+       list_Unique_GroupId = newGroup_ID;
+       
+       //print groupd IDS to check if it is removed
+       System.out.println("After removing the spaces");
+       for(int i=0; i< size_Groups; i++){
+           System.out.println(list_Unique_GroupId.get(i)); 
+       }
+       
+       for(int i=0; i < size_Groups; i++){
+           for(int j=i+1; j< size_Groups; j++)
+           {
+               if(list_Unique_GroupId.get(i).equals(list_Unique_GroupId.get(j))){
+                found_Invalid_GroupdId = true;   
+               }
+           }
+       }
+       
+      //To user ID
+       
+       //remove all the spaces of user id first
+       for(int i=0; i< size_users; i++){
+           remover = list_Unique_UserId.get(i).replaceAll("\\s+","");
+           System.out.println("after removing space: "+remover);
+            newUser_ID.add(remover);
+           
+       }
+       list_Unique_UserId = newUser_ID;
+       
+       //print groupd IDS to check if it is removed
+       System.out.println("After removing the spaces");
+       for(int i=0; i< size_users; i++){
+           System.out.println(list_Unique_UserId.get(i)); 
+       }
+       
+       for(int i=0; i < size_users; i++){
+           for(int j=i+1; j< size_users; j++)
+           {
+               if(list_Unique_UserId.get(i).equals(list_Unique_UserId.get(j))){
+                found_Invalid_UserId = true;   
+               }
+           }
+       }
+       
+       
+       //print results 
+       if(found_Invalid_GroupdId  == true )
+            JOptionPane.showMessageDialog(null, "There is invalid groupd id that has the same with others, but spaces", "Error", JOptionPane.INFORMATION_MESSAGE);
+       
+       
+       if(found_Invalid_UserId  == true )
+            JOptionPane.showMessageDialog(null, "There is invalid user id that has the same with others, but spaces", "Error", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_id_Verification_ButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -373,6 +468,8 @@ public class AdminControlPanel extends javax.swing.JFrame {
     private javax.swing.JTextArea UserTextArea;
     private javax.swing.JButton UserView_Button;
     private javax.swing.JButton User_Total_Button;
+    private javax.swing.JButton id_Verification_Button;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

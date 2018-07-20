@@ -23,6 +23,7 @@ public class Group{
          
          // when Id is given
 	 public Group(String ID) {
+             uniqueID = ID;
              
          if (!list_users.contains(ID))
          root = new DefaultMutableTreeNode(ID);
@@ -42,5 +43,13 @@ public class Group{
 	      return root;
 	   }
       
+         public List<String >get_GroupIDs(){
+             return list_users;
+         }
+         
+         @Override
+         public String toString() {
+         return uniqueID;
+    }
 	
 }
